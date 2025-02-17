@@ -1,0 +1,19 @@
+modern-ai-chat/
+├── .env                    # Environment varijable (OpenAI API ključ)
+├── README.md              # Dokumentacija projekta
+├── current_structure.txt  # Ovaj fajl
+├── generate_structure.py  # Helper skripta
+├── sessions.json         # Centralni fajl za čuvanje sesija
+└── src/
+    ├── __init__.py       # Python paket marker
+    ├── api/
+    │   ├── __init__.py   # API paket marker
+    │   └── openai_client.py  # OpenAI API klijent
+    ├── ui/
+    │   ├── __init__.py   # UI paket marker
+    │   ├── chat_bridge.py # Most između Python i QML
+    │   ├── qml_test.py   # Glavni Python fajl
+    │   └── qml/
+    │       ├── ChatView.qml      # Glavni QML UI
+    │       └── MessageDelegate.qml # Komponenta za poruke
+    └── utils/            # Direktorijum za pomoćne funkcije
