@@ -7,12 +7,16 @@ logger = logging.getLogger(__name__)
 
 class OpenAIClient:
     def __init__(self):
-        load_dotenv()
-        api_key = os.getenv('OPENAI_API_KEY')
-        if not api_key:
-            raise ValueError("OPENAI_API_KEY nije pronađen u environment varijablama")
+        # Učitaj .env fajl iz root direktorijuma
+        dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), '.env')
+        load_dotenv(dotenv_path)
         
-        self.client = AsyncOpenAI(api_key=api_key)
+        # Uzmi API ključ iz environment varijable
+        self.api_key = os.getenv('OPENAI_API_KEY')
+        if not self.api_key:
+            raise ValueError("OPENAI_API_KEY nije pronađen u .env fajlu")
+        
+        self.client = AsyncOpenAI(api_key=self.api_key)
         self.model = os.getenv('OPENAI_MODEL', 'gpt-4-turbo-preview')
         self.temperature = float(os.getenv('TEMPERATURE', '0.7'))
         self.max_tokens = int(os.getenv('MAX_TOKENS', '2000'))
